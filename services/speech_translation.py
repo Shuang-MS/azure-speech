@@ -3,21 +3,14 @@ import azure.cognitiveservices.speech as speechsdk
 from dotenv import load_dotenv
 import time
 import logging
+from utils import constants
 
 load_dotenv()
-SPEECH_KEY = os.getenv("SPEECH_KEY")
-SPEECH_REGION = os.getenv("SPEECH_REGION")
+SPEECH_KEY = os.getenv("AZURE_SPEECH_KEY")
+SPEECH_REGION = os.getenv("AZURE_SPEECH_REGION")
 endpoint_string = "wss://{}.stt.speech.microsoft.com/speech/universal/v2".format(SPEECH_REGION)
 
-LANGUAGE_MAP = {
-    "中文": "zh-CN",
-    "英文": "en-US",
-    "日文": "ja-JP",
-    "韩文": "ko-KR",
-    "德文": "de-DE",
-    "法文": "fr-FR",
-    "西班牙文": "es-ES"
-}
+
 
 def get_speech_client(audio_file, target_lang, src_lang):
     speech_translation_config = speechsdk.translation.SpeechTranslationConfig(

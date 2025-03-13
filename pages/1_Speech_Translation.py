@@ -5,7 +5,8 @@ import io
 import tempfile
 import uuid
 import time
-from apis import speech_translation
+from services import speech_translation
+from utils import constants
 
 st.set_page_config(page_title="语音翻译", page_icon="🎤", layout="centered")
 st.title("🎤 语音翻译")
@@ -13,7 +14,7 @@ st.title("🎤 语音翻译")
 # Azure Speech service configuration (you should load these from environment variables or secure storage)
 speech_key = os.environ.get('SPEECH_KEY', '')
 speech_region = os.environ.get('SPEECH_REGION', '')
-language_map = speech_translation.LANGUAGE_MAP
+language_map = constants.language_map
 solution_funcs = {
     "Azure Speech Translation": {
         "translator": speech_translation.recognize_from_file,

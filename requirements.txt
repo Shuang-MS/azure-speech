@@ -1,4 +1,5 @@
 streamlit
+streamlit-extras
 azure-cognitiveservices-speech
 azure-ai-translation-document
 azure-ai-translation-text

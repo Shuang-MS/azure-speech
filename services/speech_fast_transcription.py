@@ -6,14 +6,12 @@ import os
 import time
 from dotenv import load_dotenv, find_dotenv
 
-
 LOCALES = ["zh-CN", "en-US"]
 
 load_dotenv(find_dotenv())
-SPEECH_KEY = os.getenv("SPEECH_KEY")
-SPEECH_REGION = os.getenv("SPEECH_REGION")
+SPEECH_KEY = os.getenv("AZURE_SPEECH_KEY")
+SPEECH_REGION = os.getenv("AZURE_SPEECH_REGION")
 SPEECH_API_VERSION = os.getenv('SPEECH_API_VERSION', "2024-11-15")
-
 
 time_line = time.strftime('%Y%m%d%H%M', time.localtime(time.time()))
 logger = logging.getLogger()

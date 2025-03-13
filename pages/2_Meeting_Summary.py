@@ -1,7 +1,7 @@
 import streamlit as st
 from azure.cognitiveservices.speech import SpeechConfig, SpeechRecognizer, AudioConfig
 import time
-from apis import speech_fast_transcription, meeting_llm_analysis
+from services import speech_fast_transcription, llm_analysis
 
 @st.fragment
 def download_transcription():
@@ -49,7 +49,7 @@ if st.button("🚀 处理") and (audio_file or image_file):
         # 分析图像内容
         if image_file:
             start = time.time()
-            image_result = meeting_llm_analysis.analysis_image(image_file)
+            image_result = llm_analysis.analysis_image(image_file)
             elapsed_image = time.time() - start
             
             if image_result:
@@ -69,7 +69,7 @@ if st.button("🚀 处理") and (audio_file or image_file):
             """
 
             start = time.time()
-            summary = meeting_llm_analysis.analysis_text(user_prompt,summary_prompt)
+            summary = llm_analysis.analysis_text(user_prompt,summary_prompt)
             elapsed_summary = time.time() - start
             st.sidebar.success(f"会议总结完成，耗时 {elapsed_summary:.2f} 秒")
         
