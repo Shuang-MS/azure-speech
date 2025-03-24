@@ -11,9 +11,6 @@ from utils import constants
 st.set_page_config(page_title="语音翻译", page_icon="🎤", layout="centered")
 st.title("🎤 语音翻译")
 
-# Azure Speech service configuration (you should load these from environment variables or secure storage)
-speech_key = os.environ.get('SPEECH_KEY', '')
-speech_region = os.environ.get('SPEECH_REGION', '')
 language_map = constants.language_map
 solution_funcs = {
     "Azure Speech Translation": {
@@ -29,10 +26,6 @@ solution_funcs = {
         "tts": speech_translation.synthesize_text,
     }
 }
-
-if not speech_key or not speech_region:
-    st.error("Please set the SPEECH_KEY and SPEECH_REGION environment variables")
-    st.stop()
 
 with st.container():
     col_left, col_right = st.columns([1, 1], gap="large")
