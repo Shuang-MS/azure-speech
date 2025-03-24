@@ -86,7 +86,7 @@ with tab1:
                 </div>
             """, unsafe_allow_html=True)
     with col2:
-        use_llm = st.checkbox("LLM翻译", value=False)
+        use_llm = st.checkbox("LLM翻译", value=True)
         with col2:
             llm_container = st.empty()
             llm_container.markdown(f"""

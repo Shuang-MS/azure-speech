@@ -6,9 +6,9 @@ import logging
 import time
 
 load_dotenv()
-translation_key = os.getenv("TRANSLATOR_KEY")
-translation_region = os.getenv("TRANSLATOR_REGION")
-doc_translation_endpoint = os.getenv("DOC_TRANSLATOR_ENDPOINT")
+translation_key = os.getenv("AZURE_TRANSLATOR_KEY")
+translation_region = os.getenv("AZURE_TRANSLATOR_REGION")
+doc_translation_endpoint = os.getenv("AZURE_DOC_TRANSLATOR_ENDPOINT")
 
 logger = logging.getLogger()
 

@@ -83,7 +83,8 @@ with st.expander("🔑 Credentials Settings"):
             f.write("\n".join(updated_lines))
             if updated_lines:
                 f.write("\n")
-        
+        st.cache_data.clear()
+        st.rerun()
         st.success("Credentials saved successfully!")
 
 def render_feature_card(feature):
