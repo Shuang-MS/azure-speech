@@ -38,3 +38,75 @@ def load_css():
     }}  
 </style>  
 """
+
+def get_iframe_fullscreen_style():
+    """
+    Returns CSS styling for embedding an iframe that takes up the full screen.
+    Removes all margins, paddings, scrollbars and hides default Streamlit UI elements.
+    """
+    return """
+    /* Hide all default UI elements */
+    #MainMenu {visibility: hidden;}
+    header {visibility: hidden;}
+    footer {visibility: hidden;}
+    
+    /* Remove all margins, paddings, and scrollbars */
+    html, body, [class*="css"] {
+        margin: 0 !important;
+        padding: 0 !important;
+        overflow: hidden !important;
+    }
+    
+    /* Make iframe container take full viewport height */
+    .iframe-container {
+        position: relative;
+        width: 100vw;
+        height: 100vh; /* Use full viewport height */
+        overflow: hidden;
+        margin: 0;
+        padding: 0;
+    }
+    
+    .responsive-iframe {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        border: none;
+    }
+    
+    /* Remove all padding and margins from Streamlit containers */
+    .stApp {
+        padding: 0 !important;
+        margin: 0 !important;
+        overflow: hidden !important;
+    }
+    
+    .block-container {
+        padding: 0 !important;
+        margin: 0 !important;
+        max-width: 100% !important;
+    }
+    
+    /* Hide the tiny header too */
+    h3 {
+        margin-top: 0 !important;
+        margin-bottom: 0 !important;
+        padding: 0 !important;
+        line-height: 0 !important;
+        font-size: 0.7rem !important;
+    }
+    
+    /* Target the specific div that wraps Streamlit content */
+    .stApp > div:first-child {
+        padding: 0 !important;
+        margin: 0 !important;
+    }
+    
+    section[data-testid="stSidebar"] {
+        width: 0 !important;
+        margin: 0 !important;
+        padding: 0 !important;
+    }
+    """
