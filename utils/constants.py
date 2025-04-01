@@ -1,36 +1,42 @@
 required_credentials = {
-    "AZURE_OPENAI_API_KEY": {
-        "label": "Azure OpenAI API Key",
-        "type": "password"
+    "SPEECH": {
+        "AZURE_SPEECH_KEY": {
+            "label": "Azure Speech Service Key",
+            "type": "password"
+        },
+        "AZURE_SPEECH_REGION": {
+            "label": "Azure Speech Service Region",
+        },
     },
-    "AZURE_OPENAI_API_ENDPOINT": {
-        "label": "Azure OpenAI API Endpoint",
+    "AOAI": {
+        "AZURE_OPENAI_API_KEY": {
+            "label": "Azure OpenAI API Key",
+            "type": "password"
+        },
+        "AZURE_OPENAI_API_ENDPOINT": {
+            "label": "Azure OpenAI API Endpoint",
+        },
+        "AZURE_OPENAI_API_VERSION": {
+            "label": "Azure OpenAI API Version",
+        },
+        "GPT4o_DEPLOYMENT_NAME": {
+            "label": "GPT-4o Deployment Name",
+        },
+        "GPT4o_MINI_DEPLOYMENT_NAME": {
+            "label": "GPT-4o-mini Deployment Name",
+        },
     },
-    "AZURE_OPENAI_API_VERSION": {
-        "label": "Azure OpenAI API Version",
-    },
-    "GPT4o_DEPLOYMENT_NAME": {
-        "label": "GPT-4o Deployment Name",
-    },
-    "GPT4o_MINI_DEPLOYMENT_NAME": {
-        "label": "GPT-4o-mini Deployment Name",
-    },
-    "AZURE_SPEECH_KEY": {
-        "label": "Azure Speech Service Key",
-        "type": "password"
-    },
-    "AZURE_SPEECH_REGION": {
-        "label": "Azure Speech Service Region",
-    },
-    "AZURE_TRANSLATOR_KEY": {
-        "label": "Azure Translator Key",
-        "type": "password"
-    },
-    "AZURE_TRANSLATOR_REGION": {
-        "label": "Azure Translator Region",
-    },
-    "AZURE_DOC_TRANSLATOR_ENDPOINT": {
-        "label": "Azure Document Translator Endpoint",
+    "TRANSLATOR": {
+        "AZURE_TRANSLATOR_KEY": {
+            "label": "Azure Translator Key",
+            "type": "password"
+        },
+        "AZURE_TRANSLATOR_REGION": {
+            "label": "Azure Translator Region",
+        },
+        "AZURE_DOC_TRANSLATOR_ENDPOINT": {
+            "label": "Azure Document Translator Endpoint",
+        }
     }
 }
 

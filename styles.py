@@ -110,3 +110,52 @@ def get_iframe_fullscreen_style():
         padding: 0 !important;
     }
     """
+
+def get_credential_page_style():
+    return """
+    <style>
+        /* Make file uploader use full width */
+        [data-testid='stFileUploader'],
+        [data-testid='stFileUploader'] section,
+        [data-testid='stFileUploaderDropzone'] {
+            width: 100%;
+        }
+        
+        /* Remove padding */
+        [data-testid='stFileUploader'] section {
+            padding: 0;
+        }
+        
+        /* Hide help text */
+        [data-testid='stFileUploader'] section > input + div {
+            display: none;
+        }
+        
+        /* Adjust spacing for file details */
+        [data-testid='stFileUploader'] section + div {
+            padding-top: 0;
+        }
+        [data-testid="stFileUploaderDropzone"] {
+            background-color: #001E38;
+            border: 1px solid #FFFFFF33;
+        }
+        
+        [data-testid="stFileUploaderDropzone"] button {
+            visibility: hidden;
+            width: 100%;
+            justify-content: center;
+        }
+
+        div[data-testid="stFileUploader"] section:hover {
+            border-color: #E694FF;
+            color: #E694FF;
+        }
+        
+        [data-testid="stFileUploaderDropzone"] button::after {
+            content: "Browse";
+            visibility: visible;
+            position: absolute;
+        }
+
+    </style>
+    """
