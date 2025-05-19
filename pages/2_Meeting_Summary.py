@@ -1,7 +1,8 @@
 import streamlit as st
 from azure.cognitiveservices.speech import SpeechConfig, SpeechRecognizer, AudioConfig
 import time
-from services import speech_fast_transcription, llm_analysis
+from services import speech_fast_transcription, llm_analysis, aoai_audio
+from styles import get_file_uploader_style
 
 @st.fragment
 def download_transcription():
@@ -14,13 +15,63 @@ def download_transcription():
         key="download_transcription"
     )
 
+transcription_tools = {
+    "fast_transcription": {
+        "name": "Azure Speech Fast Transcription",
+        "function": speech_fast_transcription.fast_transcript,
+        "limit": {
+            "file_size": 200,  # 200 MB
+            "duration": "2 hours",  # 2 hours
+        }
+    },
+    "gpt4o_transcribe": {
+        "name": "GPT-4o-transcribe",
+        "function": aoai_audio.transcribe,
+        "limit": {
+            "file_size": 25,  # 25 MB
+            "duration": "10 min",  # Officially anounced 1500s, but with bug
+        }
+    }
+}
+
 # 设置页面配置
 st.set_page_config(page_title="会议录转摘", page_icon="🗓️", layout="centered")
 st.title("🗓️ 会议录转摘")
+st.markdown(get_file_uploader_style(), unsafe_allow_html=True)
 
-# 上传文件，添加图标
+tool_names = [tool["name"] for tool in transcription_tools.values()]
+tool_keys = list(transcription_tools.keys())
+selected_tool_name = st.radio(
+    "选择音频转录工具",
+    tool_names,
+    index=0,
+    horizontal=True
+)
+transcription_tool = tool_keys[tool_names.index(selected_tool_name)]
+
+audio_limit = transcription_tools[transcription_tool]["limit"]
+audio_limit_msg = f"Audio file size limit: {audio_limit['file_size']} MB, audio length limit: {audio_limit['duration']}"
 audio_file = st.file_uploader("🎤 上传音频文件", type=["wav", "mp3", "m4a"])
+st.caption(audio_limit_msg)
+
+if audio_file is not None:
+    file_size_bytes = audio_file.size
+    file_size_mb = file_size_bytes / (1024 * 1024)  # Convert bytes to MB
+    if file_size_mb > audio_limit["file_size"]:
+        st.error(f"文件大小超过限制：{audio_limit['file_size']} MB")
+        audio_file = None
+
+image_limit = 20
+image_limit_msg = f"Image size limit: {image_limit} MB"
 image_file = st.file_uploader("🖼️ 上传图像文件", type=["jpg", "jpeg", "png"])
+st.caption(image_limit_msg)
+
+if image_file is not None:
+    file_size_bytes = image_file.size
+    file_size_mb = file_size_bytes / (1024 * 1024)  # Convert bytes to MB
+    if file_size_mb > image_limit:
+        st.error(f"文件大小超过限制：{image_limit} MB")
+        image_file = None
 
 user_prompt = st.text_input("📝 输入提示词，用于会议总结 (Optional)")
 

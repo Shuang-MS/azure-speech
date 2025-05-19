@@ -76,7 +76,8 @@ with import_col:
         # Update session state
         for category, creds in imported_creds.items():
             st.session_state.creds[category].update(creds)
-            
+        
+        st.session_state.profile = st.session_state.creds
         st.success("Credentials imported successfully!")
 
 def _json_to_env(json_content):
@@ -128,3 +129,4 @@ for i, (category, creds) in enumerate(required_credentials.items()):
             submitted = st.form_submit_button("Save")
             if submitted:
                 st.success(f"{category.title()} credentials saved!")
+                st.session_state.profile = st.session_state.creds

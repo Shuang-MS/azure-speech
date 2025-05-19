@@ -19,11 +19,11 @@ required_credentials = {
         "AZURE_OPENAI_API_VERSION": {
             "label": "Azure OpenAI API Version",
         },
-        "GPT4o_DEPLOYMENT_NAME": {
-            "label": "GPT-4o Deployment Name",
+        "GPT4-1_DEPLOYMENT_NAME": {
+            "label": "GPT-4.1 Deployment Name",
         },
-        "GPT4o_MINI_DEPLOYMENT_NAME": {
-            "label": "GPT-4o-mini Deployment Name",
+        "GPT4-1_MINI_DEPLOYMENT_NAME": {
+            "label": "GPT-4.1-mini Deployment Name",
         },
     },
     "TRANSLATOR": {

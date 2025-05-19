@@ -8,8 +8,8 @@ import time
 load_dotenv()
 api_key = os.getenv("AZURE_OPENAI_API_KEY")
 api_endpoint = os.getenv("AZURE_OPENAI_API_ENDPOINT")
-gpt4o_deployment = os.getenv("GPT4o_DEPLOYMENT_NAME")
-gpt4o_mini_deployment = os.getenv("GPT4o_MINI_DEPLOYMENT_NAME")
+gpt_deployment = os.getenv("GPT4-1_DEPLOYMENT_NAME")
+gpt_mini_deployment = os.getenv("GPT4o_MINI_DEPLOYMENT_NAME")
 api_version = os.getenv("AZURE_OPENAI_API_VERSION")
 
 client = AzureOpenAI(
@@ -18,7 +18,7 @@ client = AzureOpenAI(
     api_version=api_version
 )
 
-def call_openAI(text, model=gpt4o_deployment):
+def call_openAI(text, model=gpt_deployment):
     print(f"deploy is {model}")
     response = client.chat.completions.create(
         model=model,
@@ -85,7 +85,7 @@ def text_translate(text, target_lang, source_lang):
     try:
         start = time.time()
         response = client.chat.completions.create(
-            model=gpt4o_mini_deployment,
+            model=gpt_mini_deployment,
             messages = messages,
             temperature=0.0,
             response_format={"type": "json_object"}

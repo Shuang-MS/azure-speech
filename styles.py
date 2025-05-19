@@ -159,3 +159,12 @@ def get_credential_page_style():
 
     </style>
     """
+
+def get_file_uploader_style():
+    return f"""
+    <style>
+        div[data-testid="stFileUploaderDropzoneInstructions"]>div>small {{
+            visibility:hidden;
+        }}
+    </style>
+    """
